@@ -1,8 +1,9 @@
 """
-neural network api of the alert system project.
+MachineLearning for Early-Alert System project.
 
-Created by BrayanRojas0630, Elkin77, on June 2019.
-Copyright (c) 2019 BrayanRojas0630, Elkin77 Corporación Universitaria Minuto de Dios. All rights reserved.
+Created by Brayan Rojas, Elkin Prada, on June 2019.
+Co-workers: Carlos Sierra, Santiago Salazar
+Copyright (c) 2019 Brayan Rojas, Elkin Prada Corporación Universitaria Minuto de Dios. All rights reserved.
 
 This file is part of ProjectName (BudRot-AutomaticDetection).
 
