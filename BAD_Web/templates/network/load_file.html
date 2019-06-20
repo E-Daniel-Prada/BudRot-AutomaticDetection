@@ -1,0 +1,609 @@
+<!--
+load file view of the alert system project.
+
+Created by BrayanRojas0630, Elkin77, on June 2019.
+Copyright (c) 2019 BrayanRojas0630, Elkin77 Corporación Universitaria Minuto de Dios. All rights reserved.
+
+This file is part of ProjectName (BudRot-AutomaticDetection).
+
+ProjectName (BudRot-AutomaticDetection) is free software: you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, version 3.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Budrot Automatic Detection</title>
+    {% load static %}
+    <link href="{% static 'css/jquery-ui.css'%}" rel="stylesheet" type="text/css" />
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'boostrap_template/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{% static 'boostrap_template/css/sb-admin-2.min.css'%}" rel="stylesheet">
+    <!--Angular js-->
+    <script type="text/javascript" src="{% static 'js/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular-datatables.min.js' %}"></script>
+    <!--Selectize js-->
+    <link rel="stylesheet" href="{% static 'selectize/selectize.css' %}">
+    <script src="{% static 'selectize/selectize-ng.min.js' %}"></script>
+    <script src="{% static 'selectize/angular-selectize.js' %}"></script>
+    <script src="{% static 'js/dropzone.js' %}"></script>
+    <link href="{% static 'css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/scroller.dataTables.min.css' %}">
+    <script src="{% static 'js/jquery.dataTables-3.3.1' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+    <script src="{% static 'js/jquery.dataTables.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/dataTables.scroller.min.js' %}" type="text/javascript"></script>
+    <style type="text/css">
+      blockquote {
+      border-left: 5px solid #668db3;
+      }
+      .form-wizard .steps li {
+      padding: 0px !important;
+      }
+      .tooltip-inner {
+      max-width: 350px;
+      }
+      .fancybox-custom .fancybox-skin {
+      box-shadow: 0 0 50px #222;
+      }
+    </style>
+    <style type="text/css">
+      body.loading {
+      overflow: hidden;
+      }
+      body.loading .waitingdiv {
+      display: block;
+      }
+    </style>
+    <style type="text/css">
+      @keyframes spinner {
+      to {
+      transform: rotate(360deg);
+      }
+      }
+      @-webkit-keyframes spinner {
+      to {
+      -webkit-transform: rotate(360deg);
+      }
+      }
+      .spinner {
+      min-width: 24px;
+      min-height: 24px;
+      }
+      .spinner:before {
+      content: 'Loadingâ€¦';
+      position: absolute;
+      top: 50%;
+      left: 93%;
+      width: 16px;
+      height: 16px;
+      margin-top: -10px;
+      margin-left: -10px;
+      }
+      .spinner:not(:required):before {
+      content: '';
+      border-radius: 50%;
+      border-top: 2px solid #03ade0;
+      border-right: 2px solid transparent;
+      animation: spinner .6s linear infinite;
+      -webkit-animation: spinner .6s linear infinite;
+      }
+      .fixed_column {
+      position: absolute;
+      *position: relative;
+      /*ie7*/
+      left: 0;
+      width: 100px;
+      }
+      .inner {
+      overflow-x: scroll;
+      overflow-y: visible;
+      width: 70%;
+      margin-left: 100px;
+      }
+      .dataTables_wrapper .dataTables_filter input {
+      margin-left: 0px;
+      border-radius: 0px;
+      }
+      .dataTables_wrapper .dataTables_paginate .paginate_button {
+      border-radius: 0px !important;
+      }
+      .input-group-addon {
+      border-radius: 0px !important;
+      }
+      .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+      .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+      color: white !important;
+      border: 1px solid #979797;
+      border-color: #0088cc;
+      background-color: white;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #dcdcdc));
+      background: -webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);
+      background: -moz-linear-gradient(top, #fff 0%, #dcdcdc 100%);
+      background: -ms-linear-gradient(top, #fff 0%, #dcdcdc 100%);
+      background: -o-linear-gradient(top, #fff 0%, #dcdcdc 100%);
+      background: linear-gradient(to bottom, #0088cc 0%, #428bca 100%);
+      }
+      .picedit_box {
+      width: 100% !important;
+      }
+    </style>
+    <style type="text/css">
+      .bs-example {
+      margin: 60px;
+      }
+      .help-block {
+      color: #A43C3C;
+      }
+      .loaded {
+      background-color: #94b86e;
+      }
+      .errors {
+      background-color: #e25856;
+      }
+      .processing {
+      background-color: #f0ad4e;
+      }
+      .not_processing {
+        background-color:#2c9faf;
+      }
+
+
+      @media screen and (max-width: 600px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+      }
+
+
+    </style>
+    <script>
+      var table = null
+      $(document).ready(function() {
+        App.init();
+        Plugins.init();
+        FormComponents.init()
+        //$('#picturebox').picEdit();
+      
+      
+      });
+    </script>
+  </head>
+  <body id="page-top" ng-app="app">
+    <!-- Page Wrapper -->
+    <div id="wrapper" ng-controller="network.ejemplo">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion toggled" id="accordionSidebar"
+      style="background-color: #3FA365">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fab fa-pagelines"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Automatic Detection</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/user">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Estadísticas</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Componentes
+      </div>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Componentes</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Componente</h6>
+            <a class="collapse-item" href="/network/load_file">Red Neuronal</a>
+            <a class="collapse-item" href="/network/simulation">Simulación</a>
+          </div>
+        </div>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Páginas
+      </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/user_registration">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <span>Registro de Usuarios </span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/network/list_alerts">
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        <span>Alertas</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+          </button>
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn" type="button" style="background-color: #3FA365">
+                <i class="fas fa-search fa-sm" style="color: white"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                      <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ELkin Prada</span>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <!--<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Perfil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Cerrar Sesión
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+        <div id="content">
+          <div class="col-md-12">
+            <!--=== Page Header ===-->
+            <!-- /Page Header -->
+            <!--=== Page Content ===-->
+            <!--=== Inline Tabs ===-->
+            <div class="widget">
+              <div class="widget-header">
+                <h4>
+                  <i class="fa fa-info-circle" aria-hidden="true"></i> Información importante
+                </h4>
+              </div>
+              <div class="widget-content">
+                <div class="col-md-12">
+                  <div class="alert alert-warning">
+                    <strong>Tenga en cuenta las siguientes indicaciones:</strong>
+                    <br>
+                    1. Solo se permite cargar archivos en formato <strong>.zip</strong>.
+                    <br>
+                    2. Se debe comprimir todas las imagenes en un archivo de tipo .zip
+                    <br>
+                    3. Dentro del archivo comprimido (.zip), no debe existir otro tipo de
+                    arvhivo diferente a <strong>".png y .jpg"</strong>
+                    <br> 
+                  </div>
+                </div>
+                <div class="widget-header">
+                  <h4>
+                    <i class="fa fa-download" aria-hidden="true"></i> Cargar archivo
+                  </h4>
+                </div>
+                <div class="col-md-12" style="margin-top: 15px;">
+                  <form >
+                    <div class="form-group">
+                      <div id="dropzoneuploadimage" class=" widget-content dropzone"></div>
+                    </div>
+                    {% csrf_token %}      
+                  </form>
+                </div>
+                <br>
+                <div class="widget-header">
+                  <h4>
+                  <i class="fa fa-list" aria-hidden="true"></i> Gestión
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                  {% verbatim %}
+                  <div id="upload" class="col-md-12">
+                    <table id="table_upload" class="table table-bordered table-condensed" datatable='ng' style="font-size:13px">
+                      <thead>
+                        <th class="center sorting_1">
+                          <center>Estado</center>
+                        </th>
+                        <th>
+                          <center>ID</center>
+                        </th>
+                        <th>
+                          <center>Nombre</center>
+                        </th>
+                        <th>
+                          <center>Fecha De Creación</center>
+                        </th>
+                        <th style="width: 15%">
+                          <center>Progreso</center>
+                        </th>
+                        <th>
+                          <center>Usuario</center>
+                        </th>
+                        <th>
+                          <center>Reporte de error</center>
+                        </th>
+                        <th>
+                          <center>Acción</center>
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="data in list_upload">
+                          <td ng-if="data.status == 'Error'" class="errors" >
+                            <center><label style="color: white">Archivo con errores</label></center>
+                          </td>
+                          <td ng-if="data.status == 'carga exitosa'" class="processing" >
+                            <center><label style="color: white">Carga exitosa</label></center>
+                          </td>
+                          <td class="loaded" ng-if="data.status == 'Finalizado'">
+                            <center><label style="color: white">Sin anomalias</label></center>
+                          </td>
+                          <td class="not_processing" ng-if= "data.status == 'En Procesamiento'">
+                            <center><label style="color: white">En Procesamiento</label></center>
+                          </td>
+                          <td class="errors" ng-if= "data.status == 'palma afectada'">
+                            <center><label style="color: white">PC detectada</label></center>
+                          </td>
+                          <td>
+                            <center>{{data.id}}</center>
+                          </td>
+                          <td>
+                            <center><a href="#" download>{{data.name}}</a></center>
+                          </td>
+                          <td>
+                            <center>{{data.creation_date}}</center>
+                          </td>
+                          <td>
+                            <div class="progress">
+                               <div ng-show="data.status == 'carga exitosa'" class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%; background-color: #f0ad4e" title="{{data.status}}">
+                                50%
+                              </div>
+                              <div ng-show="data.status == 'Error'" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%; background-color: #e25856" title="{{data.status}}">
+                                25%
+                              </div>
+                              <div ng-show="data.status == 'En Procesamiento'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:75%; background-color: #2c9faf" title="{{data.status}}">
+                                75%
+                              </div>
+                              <div ng-show="data.status == 'Finalizado'" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;background-color: #94b86e" title="Sin anomalias">
+                                100%
+                              </div>
+                              <div ng-show="data.status == 'palma afectada'" class="progress-bar progress-bar progress-bar-striped" role="progressbar"
+                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color:#e25856" title="PC Detectado">
+                                100%
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <center><span class="label label-primary">{{data.username}}</span></center>
+                          </td>
+                          <td>
+                            <center><button type="button" ng-show="true" class="btn-xs btn-default">
+                              <a href="#" download><i class="fa fa-download fa-xs"></i></a></button>
+                            </center>
+                          </td>
+                          <td>
+                            <center>
+                              <button ng-if= "data.status == 'carga exitosa'" type="button" ng-click="process(data.id)" class="btn-xs btn-success" style="background-color:#3FA365; color: white" title="Procesar"> <i class="fab fa-searchengin"></i></button>
+                              <i ng-show="data.status == 'Finalizado'" class="fa fa-check-circle fa-lg" style="color: #94b86e" aria-hidden="true" title="Sin anomalias"></i>
+                              <i ng-show="data.status == 'palma afectada'" class="fa fa-exclamation-triangle fa-lg" style="color: #e25856" aria-hidden="true" title="PC Detectado"></i>
+                            </center>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  {% endverbatim %}
+                </div>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+            <!-- /Page Content -->
+          </div>
+          <div class="modal fade" tabindex="-1" id="modal_loading" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body" align="center">
+                  <strong>
+                    <h4>
+                      <i class="fa fa-list" aria-hidden="true"></i>Cargando Información...
+                    </h4>
+                  </strong>
+                  <img src="{% static 'images/loading1.gif' %}" height="100" width="100">
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <div class="modal fade" tabindex="-1" id="modal_loading" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body" align="center">
+                  <strong>
+                    <h4>
+                      <i class="fa fa-list" aria-hidden="true"></i>Cargando Información..
+                    </h4>
+                  </strong>
+                  <img src="{% static 'images/loading1.gif' %}" height="100" width="100">
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <div class="modal fade" tabindex="-1" id="modal_loading" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body" align="center">
+                  <strong>
+                    <h4>
+                      <i class="fa fa-list" aria-hidden="true"></i> Los datos se están procesando, esto puede tardar varios minutos...
+                    </h4>
+                  </strong>
+                  <img src="{% static 'images/loading1.gif' %}" height="100" width="100">
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- Modal dialog -->
+          <div class="modal fade" id="modal_confirm_load">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">
+                    <i class="fa fa-check" aria-hidden="true"></i> Correcto
+                  </h4>
+                </div>
+                <div class="modal-body">
+                  <center>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <h5> Se han sincronizado sus datos. Cuando estos ya estén disponibles recibirá una notificación vía correo electrónico. </h5>
+                  </center>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">
+                  <i class="fas fa-check-circle"></i> Aceptar</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- Modal dialog -->
+          <div class="modal fade" id="modal_confirm_risk">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">
+                    <i class="fa fa-check" aria-hidden="true"></i> Correcto
+                  </h4>
+                </div>
+                <div class="modal-body">
+                  <center>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </center>
+                  <h5> Se ha puesto en marcha la sincronización de riesgo farmacológico, recibirá una notificación vía correo electrónico una vez se haya completado</h5>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">
+                  <i class="fas fa-check-circle"></i>Aceptar</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; BudRot-AutomaticDetection</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Esta seguro de salir?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Seleccione aceptar para finalizar la sesión!</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn" style="background-color: #3FA365; color:white" href="/login">Aceptar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'Controller/app.js' %}"></script>
+    <script src="{% static 'Controller/network.controller/network.js' %}"></script>
+    <script src="{% static 'Controller/Directives/directive.bootstrapSwitch.js' %}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'boostrap_template/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'boostrap_template/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'boostrap_template/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'boostrap_template/js/sb-admin-2.min.js' %}"></script>
+    <!-- Page level plugins -->
+    <script src="{% static 'boostrap_template/vendor/chart.js/Chart.min.js' %}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{% static 'boostrap_template/js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'boostrap_template/js/demo/chart-pie-demo.js' %}"></script>
+  </body>
+</html>

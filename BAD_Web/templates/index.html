@@ -1,0 +1,164 @@
+<!--
+index view of the alert system project.
+
+Created by BrayanRojas0630, Elkin77, on June 2019.
+Copyright (c) 2019 BrayanRojas0630, Elkin77 Corporación Universitaria Minuto de Dios. All rights reserved.
+
+This file is part of ProjectName (BudRot-AutomaticDetection).
+
+ProjectName (BudRot-AutomaticDetection) is free software: you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, version 3.
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="utf-8">
+      {% load static %}
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="{% static 'js/jquery-slim.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+      <script src="{% static 'fontawesome-free-5.8.2-web/js/all.js' %}"></script>
+      <script src="{% static 'fontawesome-free-5.8.2-web/js/v4-shims.js' %}"></script>
+      <title>Inicio</title>
+      <style>
+         .jumbotron {
+         background-image: url({% static 'img/fondo2.png' %});
+         background-color: #FFFFFF;
+         color:#FFFFFF;
+         margin-bottom: 0;`enter code here`
+         min-height: 50%;
+         background-repeat: no-repeat;
+         background-position: center;
+         -webkit-background-size: cover;
+         background-size: cover;
+         }
+
+         .banner {
+         background-image: url({% static '/img/fondo4.jpg' %});
+         width: 100%;
+         height: 200px;
+         }
+         .photo {
+          width: 100px;
+          height:100px;
+          border-radius:150px;
+         }
+      </style>
+   </head>
+   <body>
+      <main role="main">
+         <div class="jumbotron">
+            <div class="container">
+               <center>
+                  <h1 class="display-3">BudRot-AutomaticDetection </h1>
+               </center>
+               <h3> (Sistema Basado En Redes Neuronales Y Autómatas Celulares Para La Detección
+                  De La PC En Palma De Aceite Mediante Procesamiento De Imágenes Y Agentes Simulados) 
+               </h3>
+               <p>Mediante este sistema, brindamos la posibilidad de monitorizar los cultivos de palma 
+                  de aceite africana, para esto, se realiza una simulación basada en automatas celulares 
+                  y se crea una red neuronal con el fin de procesar imágenes de plantaciones para detectar la Pudrición del Cogollo.
+               </p>
+               <center><a class="btn btn-success btn-lg" href="/login/" role="button">Empezar &raquo;</a></center>
+            </div>
+         </div>
+         <div class="container">
+            <!-- Example row of columns -->
+            <br>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="card border-light mb-3 text-center" >
+                     <img class="card-img-top" src="{% static 'img/logo_uniminuto.png' %}" alt="Logo Uniminuto">
+                     <div class="card-body">
+                        <h2 class="card-title">Uniminuto</h2>
+                        <p class="card-text">Proveer a las comunidades educativas y de base de las distintas regiones colombianas,del conocimiento que su desarrollo integral demande, mediante la ejecución de la investigación, el desarrollo tecnológico y la innovación.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card border-light mb-5 text-center" >
+                     <img class="card-img-top" src="{% static 'img/logo_semillero.png' %}" alt="Logo Semillero">
+                     <div class="card-body">
+                        <h2 class="card-title">Codigo Enigma</h2>
+                        <p class="card-text">Un semillero posicionado al interior de la facultad, con claras fortalezas en computación, proyectos en desarrollo, y resultados de investigación divulgados.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card border-light mb-3 text-center" >
+                     <center><i class="fas fa-6x fa-laptop-code text-sucess mb-4"></i></center>
+                     <div class="card-body">
+                        <h2 class="card-title">Athenea</h2>
+                        <p class="card-text">Un semillero posicionado al interior de la facultad, con claras fortalezas en computación, proyectos en desarrollo, y resultados de investigación divulgados.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <section>
+         <div class="banner">
+         </div>
+         </section>
+         <!-- /container -->
+         <!-- Services Section -->
+         <section class="page-section" id="services">
+            <div class="container">
+               <h2 class="text-center mt-5">Equipo de Proyecto</h2>
+               <hr class="divider my-4">
+               <div class="row">
+                  <div class="col-lg-3 col-md-6 text-center">
+                     <div class="mt-3">
+                        <img class="photo" src="{% static 'img/photo_elkin.jpeg' %}" alt="Logo Uniminuto">
+                        <h3 class="h4 mb-2">Prada Gómez Elkin</h3>
+                        <p class="text-muted mb-0">Ingeniero de Sistemas en formación</p>
+                        <div>epradagomez@uniminuto.edu.co</div>
+                        <div>+57 (313) 287-0883</div>
+                        <i class="fa fa-github" aria-hidden="true"></i></i>
+                        <a href="https://github.com/Elkin77" role="button">Elkin77</a>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 text-center">
+                     <div class="mt-3">
+                        <img class="photo" src="{% static 'img/photo_brayan.jpg' %}" alt="Logo Uniminuto">
+                        <h3 class="h4 mb-2">Rojas Rubio Brayan</h3>
+                        <p class="text-muted mb-0">Ingeniero de Sistemas en formación</p>
+                        <div>epradagomez@uniminuto.edu.co</div>
+                        <div>+57 (313) 287-0883</div>
+                        <i class="fa fa-github" aria-hidden="true"></i></i>
+                        <a href="https://github.com/BrayanRojas0630" role="button">BrayanRojas0630</a>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 text-center">
+                     <div class="mt-3">
+                        <i class="fas fa-4x fa-chalkboard-teacher mb-4"></i>
+                        <h3 class="h4 mb-2">MSc. Sierra Virgez Carlos</h3>
+                        <p class="text-muted mb-0">Coordinador - Semillero Codigo Enigma</p>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 text-center">
+                     <div class="mt-3">
+                        <i class="fas fa-4x fa-chalkboard-teacher mb-4"></i>
+                        <h3 class="h4 mb-2">MSc. Salazar Santiago</h3>
+                        <p class="text-muted mb-0">Coordinador - Semillero Athenea</p>
+                        <div>ssalaza7@uniminuto.edu.co</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <br>
+         <br>
+            <!-- Footer -->
+         <footer class="sticky-footer" style="background-color: #3FA365"> 
+           <div class="container my-auto">
+             <div class="copyright text-center my-auto" style="color: white">
+               <strong><span>Copyright &copy; BudRot-AutomaticDetection</span></strong>
+             </div>
+           </div>
+         </footer>
+         <!-- End of Footer -->
+      </main>
+   </body>

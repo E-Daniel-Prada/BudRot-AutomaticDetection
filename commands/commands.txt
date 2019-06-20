@@ -1,0 +1,63 @@
+#Crear Ambiente Virtual
+
+$ virtualenv --system-site-packages targetDirectory # for Python 2.7
+$ virtualenv --system-site-packages -p python3 targetDirectory # for Python 3.n
+
+##### Activar ambiente virtual
+
+$ source ~/tensorflow/bin/activate
+
+###### actualizar pip
+
+easy_install -U pip
+
+####### Instalar TensorFlow en el ambiente virtual
+
+(tensorflow)$ pip install --upgrade tensorflow-gpu  # for Python 2.7 and GPU
+(tensorflow)$ pip3 install --upgrade tensorflow-gpu # for Python 3.n and GPU
+
+### Nota:
+
+Advertencia de futuro: la conversión del segundo argumento de issubdtype de `float` a` np.floating` está obsoleta. En el futuro, se tratará como `np.float64 == np.dtype (float) .type`.desde ._conv importar register_converters como _register_converters.
+
+#### En caso de presentar un error al ya instalar tensorflow y importar su libreria, ejecutar de nuevo el siguiente comando:
+
+$pip install --upgrade --no-deps --force-reinstall tensorflow
+
+### Instalar Keras
+
+pip install keras
+
+#### Revisar versiones
+
+python -c 'import tensorflow as tf; print(tf.__version__)'  #funciona para Python 2 y Python 3
+
+python -c 'import keras; print(keras.__version__)'
+
+
+##############################################################################################
+SIMULACIÓN
+
+1. Instalación de libreria WX Python
+pip install -U \
+	-f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-16.04 \
+	wxPython
+
+2. Error al importar wx
+wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb \
+  && dpkg -i /tmp/libpng12.deb \
+  && rm /tmp/libpng12.deb
+
+
+
+
+################################################################################################
+##################### ERRORES MYSQL ############################################################
+
+https://pypi.org/project/mysqlclient/
+
+https://stackoverflow.com/questions/34819221/why-is-python-setup-py-saying-invalid-command-bdist-wheel-on-travis-ci
+
+
+
+	
